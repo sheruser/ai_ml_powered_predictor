@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personality Results | Personality Predictor AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h1>Personality Predictor AI</h1>
+        </header>
+
+        <div class="content">
+            <div class="main">
+                <section class="result-section">
+                    {% if personality == 'Extrovert' %}
+                    <div class="result-card extrovert-result">
+                        <div class="result-header">
+                            <i class="fas fa-users"></i> You are an Extrovert
+                        </div>
+                        <div class="explanation">
+                            {{ explanation | safe }}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="result-card introvert-result">
+                        <div class="result-header">
+                            <i class="fas fa-book-reader"></i> You are an Introvert
+                        </div>
+                        <div class="explanation">
+                            {{ explanation | safe }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <h2 class="section-heading">Personality Traits</h2>
+                    <div class="traits-container">
+                        {% if personality == 'Extrovert' %}
+                        <ul class="traits-list">
+                            <li><i class="fas fa-check-circle"></i> Find energy in social interactions</li>
+                            <li><i class="fas fa-check-circle"></i> Prefer group activities</li>
+                            <li><i class="fas fa-check-circle"></i> Think while speaking</li>
+                            <li><i class="fas fa-check-circle"></i> Have broader social networks</li>
+                            <li><i class="fas fa-check-circle"></i> Seek external stimulation</li>
+                        </ul>
+                        {% else %}
+                        <ul class="traits-list">
+                            <li><i class="fas fa-check-circle"></i> Recharge through alone time</li>
+                            <li><i class="fas fa-check-circle"></i> Prefer deeper one-on-one conversations</li>
+                            <li><i class="fas fa-check-circle"></i> Think before speaking</li>
+                            <li><i class="fas fa-check-circle"></i> Have smaller, closer friend circles</li>
+                            <li><i class="fas fa-check-circle"></i> Find fulfillment in quiet activities</li>
+                        </ul>
+                        {% endif %}
+                    </div>
+
+                    <div class="inputs-summary">
+                        <h3>Your Input Summary</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <span class="summary-label">Time Spent Alone:</span>
+                                <span class="summary-value">{{ data.Time_spent_Alone }} hours/day</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Stage Fear:</span>
+                                <span class="summary-value">{{ "Yes" if data.Stage_fear == 1 else "No" }}</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Social Events:</span>
+                                <span class="summary-value">{{ data.Social_event_attendance }} per month</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Going Outside:</span>
+                                <span class="summary-value">{{ data.Going_outside }} times per week</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Drained After Socializing:</span>
+                                <span class="summary-value">{{ "Yes" if data.Drained_after_socializing == 1 else "No"
+                                    }}</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Friends Circle Size:</span>
+                                <span class="summary-value">{{ data.Friends_circle_size }}</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Social Media Posts:</span>
+                                <span class="summary-value">{{ data.Post_frequency }} per week</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="/" class="btn secondary-btn">
+                            <i class="fas fa-redo"></i> Try Again
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with <i class="fas fa-heart"></i> using Flask, Scikit-learn and Google Gemini</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

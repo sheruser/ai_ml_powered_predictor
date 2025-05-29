@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+joblib
+streamlit
+google-generativeai
+flask
+python-dotenv
+matplotlib  x   
